@@ -1,8 +1,14 @@
+import nodemailer from 'nodemailer';
+
 export default class Mailer {
 
     constructor(opts = {}) {
         this.opts = opts;
+        this.inited = false;
+        this.init();
+    }
 
+    async init() {
         // Generate test SMTP service account from ethereal.email
         // Only needed if you don't have a real mail account for testing
         this._testAccount = await nodemailer.createTestAccount();
@@ -13,14 +19,17 @@ export default class Mailer {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: testAccount.user, // generated ethereal user
-                pass: testAccount.pass, // generated ethereal password
+                user: this._testAccount.user, // generated ethereal user
+                pass: this._testAccount.pass, // generated ethereal password
             },
         });
+        this.inited = true;
     }
 
     async send({ subject, text, html }) {
-
+        if (!this.inited) {
+            await this.init();
+        }
         // send mail with defined transport object
         let info = await transporter.sendMail({
             // from: '"Fred Foo 👻" <foo@example.com>', // sender address

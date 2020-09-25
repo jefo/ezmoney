@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^1.0.0",
@@ -16,6 +17,10 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.0"
+    "@fooloomanzoo/number-input": "^3.0.10",
+    "currency": "^4.1.0",
+    "numeral": "^2.0.6",
+    "sirv-cli": "^1.0.0",
+    "svelte-input-mask": "^1.0.1"
   }
 }
