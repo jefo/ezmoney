@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import numeral from 'numeral';
 
+  // TODO: АКЦИЯ: фиксированная ставка (100р за обмен) или 1%
+
   onMount(() => {
     const elPrice = document.getElementById("price");
     const elAmount = document.getElementById("amount");
