@@ -1,3 +1,24 @@
+<style>
+  .order-details {
+    font-size: 24px;
+  }
+
+  .row {
+    display: flex;
+    background-color: #394245;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    color: #e2e2e2;
+    padding: 1.2rem 2.4rem 1.2rem 2.4rem;
+    align-items: center;
+  }
+
+  .label {
+    width: 170px;
+    font-size: 20px;
+  }
+
+</style>
 <script>
   import { onMount } from "svelte";
   import numeral from "numeral";
@@ -108,7 +129,8 @@
         id="ui-content-wrapper"
         class="styled__ContentWrapper-nz051x-3 kTeoBv">
         <div class="styled__Wrapper-jh5f4m-0 hgLKRt">
-          <h1 style="margin-top: 100px;">Самый выгодный курс</h1>
+          <h1 style="margin-top: 100px;">BTC за QIWI</h1>
+          <h3>Самый выгодный курс. </h3>
           <section class="styled__Section-sc-41jxkj-0 bvFigX">
             <div class="styled__Wrapper-sc-41jxkj-1 kiWDxD">
               <div class="styled__Calculator-sc-41jxkj-4 gmVwgp">
@@ -409,36 +431,28 @@
                 </div>
               </div>
               <div class="styled__Hero-sc-41jxkj-2 esrRra">
-                <h1
-                  class="cl-heading color-white main-heading sc-bdVaJa bVGaXa"
-                  font-size="3.2">
-                  Цена BTC:<br />{btcPrice}&nbsp;RUB <span class="dot">.</span>
-                </h1>
-                <p class="sub-slogan styled__HeroParagraph-sc-41jxkj-3 dfQOTE">
-                  1% коммиссии
-                </p>
-                <!-- <div
-                  class="store-button-box no-mobile-item-sm
-                    mobile-store-buttons-box styled__ButtonContainer-sc-63owgl-0
-                    fNSugS">
-                  <a
-                    class="size-medium color-dark storeButtonExchange sc-EHOje
-                      hKUrIz"
-                    type="button"
-                    href="https://app.adjust.com/6l2ahct?campaign=main_page&adgroup=button&creative=title&redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.changelly.app"
-                    target="_blank"
-                    rel="noopener noreferrer"><img
-                      src="images/images-gplay-604ce84b6c01e3faf3f52822ec28eb6b.svg"
-                      alt="GooglePlay button" /></a><a
-                    class="size-medium color-dark storeButtonExchange sc-EHOje
-                      hKUrIz"
-                    type="button"
-                    href="https://app.adjust.com/62vkn10?campaign=main_page&adgroup=button&creative=title&redirect=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fchangelly-crypto-exchange%2Fid1435140380"
-                    target="_blank"
-                    rel="noopener noreferrer"><img
-                      src="images/images-appstore-9e0ed4a97a2738baa0e1d2beddb81dcf.svg"
-                      alt="AppStore button" /></a>
-                </div> -->
+                <div class="order-details">
+                  <div class="row">
+                    <div class="cell label">Вы покупаете</div>
+                    <div class="cell">0.0125&nbsp;BTC</div>
+                  </div>
+                  <div class="row">
+                    <div class="cell label">Курс обмена</div>
+                    <div class="cell">852,902</div>
+                  </div>
+                  <div class="row">
+                    <div class="cell label">Комиссия</div>
+                    <div class="cell">100р</div>
+                  </div>
+                  <div class="row">
+                    <div class="cell label">К оплате</div>
+                    <div class="cell">3100р</div>
+                  </div>
+                  <div class="row">
+                    <div class="cell label">Статус</div>
+                    <div class="cell">Ожидание оплаты</div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
