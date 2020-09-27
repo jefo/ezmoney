@@ -1,23 +1,93 @@
 <script>
   import { onMount } from "svelte";
-  import numeral from 'numeral';
+  import numeral from "numeral";
+  import axios from "axios";
+
+  // load a locale
+  numeral.register("locale", "ru", {
+    delimiters: {
+      thousands: " ",
+      decimal: ",",
+    },
+    abbreviations: {
+      thousand: "k",
+      million: "m",
+      billion: "b",
+      trillion: "t",
+    },
+    ordinal: function (number) {
+      return ".";
+    },
+    currency: {
+      symbol: "₽",
+    },
+  });
+  numeral.locale("ru");
 
   // TODO: АКЦИЯ: фиксированная ставка (100р за обмен) или 1%
+  let btcPrice = localStorage.getItem("lastPrice", "848.892");
+  let values = {
+    price: 0,
+    amount: 0,
+  };
+  let loading = false;
+  axios
+    .get("http://localhost:8080/price", {
+      params: { currency: "btc", value: 1 },
+    })
+    .then((resp) => {
+      btcPrice = numeral(resp.data).format();
+      localStorage.setItem("lastPrice", btcPrice);
+    });
+
+  const getCurrencyPrice = ({ currency, value }) =>
+    axios
+      .get("http://localhost:8080/price", {
+        params: { currency, value },
+      })
+      .then((resp) => resp.data);
 
   onMount(() => {
     const elPrice = document.getElementById("price");
     const elAmount = document.getElementById("amount");
 
-    const initNumericInput = (el) => {
+    const initNumericInput = (el, format) => {
       el.addEventListener("blur", (e) => {
-        const val = numeral(el.value);
-        console.log('val', val);
-        el.value = val.format('0,0[.]00');
+        if (el.value === "") {
+          el.value = 0;
+        }
+        const value = numeral(values[el.id]).value();
+        let currency = e.target.id === "price" ? "rub" : "btc";
+        if (loading) {
+          return;
+        }
+        if (value === 0) {
+          el.value = 0;
+          return;
+        }
+        loading = true;
+        getCurrencyPrice({ currency, value })
+          .then((data) => {
+            let inputToUpdate = e.target.id === "price" ? "amount" : "price";
+            values[inputToUpdate] = numeral(data).format("0,0[.]00000000");
+            loading = false;
+          })
+          .catch((e) => console.error(e));
+        if (currency === "price") {
+          values[el.id] = numeral(value).format();
+        } else {
+          values[el.id] = numeral(value).format("0,0[.]00000000");
+        }
       });
     };
 
     initNumericInput(elPrice);
-    initNumericInput(elAmount);
+    elPrice.addEventListener("focus", (e) => {
+      if (e.target.value === "0") {
+        e.target.value = "";
+      }
+    });
+    initNumericInput(elAmount, "0,0[.]00000000");
   });
 </script>
 
@@ -44,7 +114,7 @@
                       class="c-price-value currency-block__value
                         styled__CurrencyValue-g3y0ua-2 cLCbhf"
                       maxlength="6"
-                      value="" />
+                      bind:value={values.price} />
                     <div
                       class="currency-block__currency
                         styled__CurrencyButtonWrapper-g3y0ua-3 jCKRds">
@@ -209,7 +279,7 @@
                       maxlength="16"
                       class="currency-block__value
                         styled__CurrencyValue-g3y0ua-2 cLCbhf"
-                      value="" />
+                      bind:value={values.amount} />
                     <div
                       class="currency-block__currency
                         styled__CurrencyButtonWrapper-g3y0ua-3 jCKRds">
@@ -316,7 +386,7 @@
                 <h1
                   class="cl-heading color-white main-heading sc-bdVaJa bVGaXa"
                   font-size="3.2">
-                  Цена BTC:<br />822 494,96&nbsp;RUB <span class="dot">.</span>
+                  Цена BTC:<br />{btcPrice}&nbsp;RUB <span class="dot">.</span>
                 </h1>
                 <p class="sub-slogan styled__HeroParagraph-sc-41jxkj-3 dfQOTE">
                   1% коммиссии

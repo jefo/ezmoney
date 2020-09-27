@@ -5,7 +5,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public"
-  },
+},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@fooloomanzoo/number-input": "^3.0.10",
+    "axios": "^0.20.0",
     "currency": "^4.1.0",
     "numeral": "^2.0.6",
     "sirv-cli": "^1.0.0",
