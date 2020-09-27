@@ -5,7 +5,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public"
-},
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -22,6 +22,7 @@
     "currency": "^4.1.0",
     "numeral": "^2.0.6",
     "sirv-cli": "^1.0.0",
-    "svelte-input-mask": "^1.0.1"
+    "svelte-input-mask": "^1.0.1",
+    "svelte-swipe": "^1.7.0"
   }
 }

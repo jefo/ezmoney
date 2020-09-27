@@ -2,6 +2,15 @@
   import { onMount } from "svelte";
   import numeral from "numeral";
   import axios from "axios";
+  import { Swipe, SwipeItem } from "svelte-swipe";
+
+  const swipeConfig = {
+    autoplay: false,
+    delay: 0,
+    showIndicators: false,
+    transitionDuration: 1000,
+    defaultIndex: 0,
+  };
 
   // load a locale
   numeral.register("locale", "ru", {
@@ -30,6 +39,7 @@
     price: 0,
     amount: 0,
   };
+  let address = '';
   let loading = false;
   axios
     .get("http://localhost:8080/price", {
@@ -374,6 +384,22 @@
                         </div>
                       </div>
                     </div>
+
+                  </div>
+                  <div
+                    style="margin-top: 24px"
+                    class="currency-block styled__WrapperCurrency-g3y0ua-0 rGnYa">
+                    <span
+                      class="currency-block__label
+                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Номер bitcoin кошелька</span>
+                    <input
+                      style="width: 100%; font-size: 18px;"
+                      id="wallet"
+                      maxlength="34"
+                      placeholder="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
+                      class="currency-block__value
+                        styled__CurrencyValue-g3y0ua-2 cLCbhf"
+                      bind:value={address} />
                   </div>
                   <button
                     class="size-large color-green full-width exchange-button
@@ -416,139 +442,6 @@
               </div>
             </div>
           </section>
-          <!-- <section class="styled__Section-sc-1hv19ou-0 kpkDdB">
-            <div class="styled__Feature-sc-1hv19ou-1 bzAOtN">
-              <i class="styled__FeatureIcon-sc-1hv19ou-2 hNcGGJ" /><span class="styled__FeatureDescription-sc-1hv19ou-3
-                  kteVhV">Best rates on the market</span>
-            </div>
-            <div class="styled__Feature-sc-1hv19ou-1 bzAOtN">
-              <i class="styled__FeatureIcon-sc-1hv19ou-2 hNcGGJ" /><span class="styled__FeatureDescription-sc-1hv19ou-3
-                  kteVhV">Transparent reasonable fees</span>
-            </div>
-            <div class="styled__Feature-sc-1hv19ou-1 bzAOtN">
-              <i class="styled__FeatureIcon-sc-1hv19ou-2 hNcGGJ" /><span class="styled__FeatureDescription-sc-1hv19ou-3
-                  kteVhV">Fast 5-30 min transactions</span>
-            </div>
-            <div class="styled__Feature-sc-1hv19ou-1 bzAOtN">
-              <i class="styled__FeatureIcon-sc-1hv19ou-2 hNcGGJ" /><span class="styled__FeatureDescription-sc-1hv19ou-3
-                  kteVhV">High exchange limits</span>
-            </div>
-            <div class="styled__Feature-sc-1hv19ou-1 bzAOtN">
-              <i class="styled__FeatureIcon-sc-1hv19ou-2 hNcGGJ" /><span class="styled__FeatureDescription-sc-1hv19ou-3
-                  kteVhV">24/7 live chat support</span>
-            </div>
-          </section> -->
-          <!-- <section class="styled__SectionWrapper-sc-10l5knu-0 hXZjNH">
-            <h2
-              class="cl-heading color-white styled__Heading-sc-10l5knu-2 beKCtX
-                sc-bwzfXH isGCyA"
-              font-size="2.4">
-              24-hour statistics
-            </h2>
-            <div class="styled__Section-sc-10l5knu-1 cnLgXJ">
-              <div class="styled__NumberStats-sc-10l5knu-3 TURtK">
-                <div class="styled__StatRow-sc-10l5knu-5 bZzpPQ">
-                  <div class="styled__StatItem-sc-10l5knu-6 kVxLsj">
-                    <i class="styled__StatIcon-sc-10l5knu-7 kximqP" />
-                    <div class="styled__StatValues-sc-10l5knu-8 hzaFkp">
-                      2648
-                      <p
-                        class="cl-para styled__StatHint-sc-10l5knu-9 eQDMMD
-                          sc-fAjcbJ iNmVLg">
-                        Transactions made
-                      </p>
-                    </div>
-                  </div>
-                  <div class="styled__StatItem-sc-10l5knu-6 kVxLsj">
-                    <i class="styled__StatIcon-sc-10l5knu-7 iNGhAD" />
-                    <div class="styled__StatValues-sc-10l5knu-8 hzaFkp">
-                      BTC-XMR
-                      <p
-                        class="cl-para styled__StatHint-sc-10l5knu-9 eQDMMD
-                          sc-fAjcbJ iNmVLg">
-                        Today's champion pair
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="styled__StatRow-sc-10l5knu-5 bZzpPQ">
-                  <div class="styled__StatItem-sc-10l5knu-6 kVxLsj">
-                    <i class="styled__StatIcon-sc-10l5knu-7 jkRICN" />
-                    <div class="styled__StatValues-sc-10l5knu-8 hzaFkp">
-                      10.3 minutes
-                      <p
-                        class="cl-para styled__StatHint-sc-10l5knu-9 eQDMMD
-                          sc-fAjcbJ iNmVLg">
-                        Average processing time
-                      </p>
-                    </div>
-                  </div>
-                  <div class="styled__StatItem-sc-10l5knu-6 kVxLsj">
-                    <i class="styled__StatIcon-sc-10l5knu-7 imodBa" />
-                    <div class="styled__StatValues-sc-10l5knu-8 hzaFkp">
-                      41 565
-                      <p
-                        class="cl-para styled__StatHint-sc-10l5knu-9 eQDMMD
-                          sc-fAjcbJ iNmVLg">
-                        Visits today
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="styled__VisualStats-sc-10l5knu-4 dsdGid">
-                <svg
-                  width="144"
-                  height="144"
-                  class="styled__Chart-sc-10l5knu-10 jDSrEU">
-                  <circle
-                    cx="72"
-                    cy="72"
-                    r="68"
-                    fill="none"
-                    stroke="#10d078"
-                    stroke-width="8"
-                    style="stroke-opacity:0.4" />
-                  <circle
-                    cx="72"
-                    cy="72"
-                    r="68"
-                    fill="none"
-                    stroke="#10d078"
-                    stroke-width="8"
-                    stroke-dasharray="430.257"
-                    stroke-dashoffset="314.08761" />
-                </svg>
-                <div class="styled__MobileChart-sc-10l5knu-14 hSjdMK">
-                  <div
-                    style="width:27%"
-                    class="styled__MobileChartValue-sc-10l5knu-15 bGqoli" />
-                </div>
-                <div class="styled__ChartValues-sc-10l5knu-11 jNtExS">
-                  <div class="styled__ChartValuesItem-sc-10l5knu-12 gBnAYc">
-                    <span
-                      class="styled__ChartValuesPercentage-sc-10l5knu-13 WVxTY">27
-                      %</span>
-                    <p
-                      class="cl-para styled__StatHint-sc-10l5knu-9 eQDMMD
-                        sc-fAjcbJ iNmVLg">
-                      New users
-                    </p>
-                  </div>
-                  <div class="styled__ChartValuesItem-sc-10l5knu-12 gBnAYc">
-                    <span
-                      class="styled__ChartValuesPercentage-sc-10l5knu-13 WVxTY">73
-                      %</span>
-                    <p
-                      class="cl-para styled__StatHint-sc-10l5knu-9 eQDMMD
-                        sc-fAjcbJ iNmVLg">
-                      Regular users
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> -->
         </div>
       </div>
     </div>
