@@ -9,26 +9,27 @@ const binance = new Binance().options({
 
 app.use(express.json());
 
-const rubToBtc = (val = 0, btcPrice) => {
-    return Math.round(1e8 * val * (1 / btcPrice)) / 1e8;
-};
+const rubToBtc = (val = 0, btcPrice) => Math.round(1e8 * val * (1 / btcPrice)) / 1e8;
+const btcToRub = (val = 0, btcPrice) => val > 0 ? Math.round(1e3 * btcPrice / (1 / val)) / 1e3 : 0;
 
-app.get('/btc/price', (req, res) => {
+app.get('/price', (req, res) => {
+    let calcPrice;
+    switch (req.query.currency.toLowerCase()) {
+        case 'rub':
+            calcPrice = rubToBtc;
+            break;
+        case 'btc':
+            calcPrice = btcToRub;
+            break;
+        default:
+            calcPrice = val => val;
+    }
     binance.prices('BTCRUB', (resp, ticker) => {
         if (resp) {
             res.sendStatus(500);
         } else {
-            res.json(rubToBtc(req.query.amount  , ticker.BTCRUB));
-        }
-    });
-});
-
-app.get('/qiwi/price', (req, res) => {
-    binance.prices('BTCRUB', (resp, ticker) => {
-        if (resp) {
-            res.sendStatus(500);
-        } else {
-            res.json(rubToBtc(req.query.amount  , ticker.BTCRUB));
+            const price = calcPrice(req.query.value, ticker.BTCRUB)
+            res.json(price);
         }
     });
 });
