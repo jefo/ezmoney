@@ -727,6 +727,10 @@ body .clly-button__opposite {
 	text-align: left;
 }
 
+.ClcTl:focus {
+
+}
+
 @media (max-width:1024px) {
 	.ClcTl {
 		line-height: 3.2rem;
@@ -1827,6 +1831,11 @@ body .clly-button__opposite {
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
 	color: #e2e2e2;
+	transition: border-color .2s ease-in-out;
+}
+
+.cLCbhf:focus {
+	border-color: #71a7c5;
 }
 
 .cLCbhf.is-fixed-rate {
