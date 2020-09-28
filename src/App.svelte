@@ -1,6 +1,7 @@
 <style>
   .order-details {
     font-size: 24px;
+    width: 100%;
   }
 
   .row {
@@ -14,7 +15,8 @@
   }
 
   .label {
-    width: 170px;
+    width: 40%;
+    min-width: 160px;
     font-size: 20px;
   }
 
@@ -129,7 +131,7 @@
         id="ui-content-wrapper"
         class="styled__ContentWrapper-nz051x-3 kTeoBv">
         <div class="styled__Wrapper-jh5f4m-0 hgLKRt">
-          <h1 style="margin-top: 100px;">BTC за QIWI</h1>
+          <h1 style="margin-top: 100px;">Купить BTC за QIWI</h1>
           <h3>Самый выгодный курс. </h3>
           <section class="styled__Section-sc-41jxkj-0 bvFigX">
             <div class="styled__Wrapper-sc-41jxkj-1 kiWDxD">

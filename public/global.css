@@ -1,12 +1,30 @@
+@font-face {
+	font-family: "InputMono";
+	src: url("/InputMono/InputMono-Regular.woff") format("woff");
+}
+
+@font-face {
+	font-family: "GTWalsheimPro";
+	src: url("/GTWalsheim/GTWalsheimPro-Regular.woff") format("woff"),
+		url("/GTWalsheim/GTWalsheimPro-Regular.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "GTWalsheimPro";
+	font-weight: 700;
+	src: url("/GTWalsheim/GTWalsheimPro-Bold.woff") format("woff"),
+		url("/GTWalsheim/GTWalsheimPro-Bold.woff2") format("woff2");
+}
+
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
-
-	
   }
 
   body {
 	margin: 0;
+	color: #bcc2cf;
+	font-family: 'InputMono', monospace;
   }
 
   h1 {
@@ -496,7 +514,7 @@ html {
   body {
 	position: relative;
 	height: inherit;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', monospace;
 	font-size: 1rem;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -515,7 +533,7 @@ html {
   h1 {
 	margin: 0;
 	line-height: 48px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 3.2rem;
 	color: #10d078;
@@ -524,7 +542,7 @@ html {
   h2 {
 	margin: 0;
 	line-height: 40px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 3.2rem;
 	color: #10d078;
@@ -533,7 +551,7 @@ html {
   h3 {
 	margin: 0;
 	line-height: 32px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 2.4rem;
 	color: #10d078;
@@ -542,7 +560,7 @@ html {
   h6 {
 	margin: 0;
 	line-height: 20px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 1.8rem;
 	color: #10d078;
@@ -576,7 +594,7 @@ html {
 	h1 {
 	  margin: 0;
 	  /* line-height: 2px; */
-	  font-family: 'Montserrat', sans-serif;
+	  font-family: 'GTWalsheimPro', sans-serif;
 	  font-weight: 700;
 	  font-size: 6rem;
 	  color: #10d078;
@@ -585,7 +603,7 @@ html {
 	h2 {
 	  margin: 0;
 	  line-height: 48px;
-	  font-family: 'Montserrat', sans-serif;
+	  font-family: 'GTWalsheimPro', sans-serif;
 	  font-weight: 700;
 	  font-size: 3.2rem;
 	  color: #10d078;
@@ -594,7 +612,7 @@ html {
 	h3 {
 	  margin: 0;
 	  line-height: 36px;
-	  font-family: 'Montserrat', sans-serif;
+	  font-family: 'GTWalsheimPro', sans-serif;
 	  font-weight: 700;
 	  font-size: 2.4rem;
 	  color: #10d078;
@@ -693,7 +711,7 @@ html {
 	margin: 0;
 	margin-bottom: 2rem;
 	line-height: 7.2rem;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 6.4rem;
 	text-align: left;
@@ -732,7 +750,7 @@ html {
 	margin: 0;
 	margin-bottom: 2rem;
 	line-height: 3.2rem;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 2.4rem;
 	text-align: left;
@@ -770,7 +788,7 @@ html {
 	margin: 0;
 	margin-bottom: 2rem;
 	line-height: 4.288rem;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 3.216rem;
 	text-align: left;
@@ -809,7 +827,7 @@ html {
 	margin: 0;
 	margin-bottom: 2rem;
 	line-height: 2.52rem;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-weight: 700;
 	font-size: 1.8rem;
 	text-align: left;
@@ -857,7 +875,7 @@ html {
 	background: #10d078;
 	border: 1px solid #10d078;
 	border-radius: 4px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-size: 1.4rem;
 	font-weight: 600;
 	color: white;
@@ -962,7 +980,7 @@ html {
 
   .hKUrIz.size-large {
 	padding: 14px 16px;
-	font-size: 16px;
+	font-size: 20px;
 	line-height: 21px;
   }
 
@@ -1286,7 +1304,7 @@ html {
 	display: block;
 	margin: 1.4em 0;
 	padding: 0;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'GTWalsheimPro', sans-serif;
 	font-size: 1.6rem;
 	list-style: none;
 	color: #394247;
@@ -1338,7 +1356,7 @@ html {
 	-ms-flex-align: center;
 	align-items: center;
 	cursor: pointer;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-weight: 600;
 	line-height: 16px;
 	font-style: normal;
@@ -1446,7 +1464,7 @@ html {
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: bold;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	border-bottom: 2px solid transparent;
 	cursor: pointer;
   }
@@ -1503,7 +1521,7 @@ html {
 	font-size: 13px;
 	font-weight: 600;
 	color: #557f96;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
   }
 
   .fMoEvE .rate-info.is-fixed-rate {
@@ -1793,7 +1811,7 @@ html {
 	position: absolute;
 	top: 9px;
 	left: 12px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.2rem;
 	font-weight: 600;
 	color: #557f96;
@@ -1813,7 +1831,7 @@ html {
 	width: calc(100% - 108px);
 	height: 48px;
 	border: 0;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 2.4rem;
 	font-weight: 600;
 	outline: 0;
@@ -1852,7 +1870,7 @@ html {
 	border: 0;
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 2.4rem;
 	font-style: normal;
 	font-weight: bold;
@@ -1945,7 +1963,7 @@ html {
 	display: block;
 	margin: 1.4em 0;
 	padding: 0;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.6rem;
 	list-style: none;
 	color: #394247;
@@ -1978,7 +1996,7 @@ html {
 	line-height: 16px;
 	color: #557F96;
 	background: #fafafa;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	max-height: 4rem;
 	padding: 1rem;
   }
@@ -2009,7 +2027,7 @@ html {
 	margin-left: 0.5rem;
 	line-height: 1.43;
 	border: 0;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.4rem;
 	color: #394247;
 	outline: 0;
@@ -2101,7 +2119,7 @@ html {
 
   .bZzVdI .cl-droplist li .coin-ticker {
 	margin: 0 12px 0 0;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.8rem;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -2351,7 +2369,7 @@ html {
   .fSTQrZ {
 	max-width: 220px;
 	margin: 0 20px 11px 0;
-	font-family: Montserrat, sans-serif;
+	font-family: InputMono, sans-serif;
 	font-size: 14px;
 	font-weight: 600;
 	color: #557f96;
@@ -2936,7 +2954,7 @@ html {
 	padding: 0;
 	vertical-align: initial;
 	line-height: 1.5;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.6rem;
 	font-weight: 400;
 	color: #b4b4b4;
@@ -3371,7 +3389,7 @@ html {
 	margin: 0;
 	padding: 1rem 2rem 7rem;
 	list-style: none;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.4rem;
 	color: white;
 	text-align: left;
@@ -3632,7 +3650,7 @@ html {
 	list-style: none;
 	background: white;
 	border-radius: 4px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.4rem;
 	font-weight: normal;
 	color: #394247;
@@ -3697,7 +3715,7 @@ html {
 	background: #80a3b638;
 	border: 1px solid transparent;
 	border-radius: 4px;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'InputMono', sans-serif;
 	font-size: 1.4rem;
 	font-weight: 600;
 	color: #557f96;
@@ -4358,6 +4376,8 @@ html {
 
   .drsJoZ.page-index {
 	border-top: 1px solid #222729;
+	padding: 24px;
+	min-width: 410px;
   }
 
   /* sc-component-id: styled__HeaderWrapper-nz051x-2 */
@@ -4436,6 +4456,14 @@ html {
 
   @media screen and (max-width:1024px) {
 	.kiWDxD {
+	  -webkit-flex-wrap: nowrap;
+	  -ms-flex-wrap: nowrap;
+	  flex-wrap: nowrap;
+	}
+  }
+
+  @media screen and (max-width:768px) {
+	.kiWDxD {
 	  -webkit-flex-wrap: wrap;
 	  -ms-flex-wrap: wrap;
 	  flex-wrap: wrap;
@@ -4455,6 +4483,8 @@ html {
 	-webkit-justify-content: space-between;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
+	width: 100%;
+	margin-left: 7vw;
   }
 
   .esrRra .main-heading {
