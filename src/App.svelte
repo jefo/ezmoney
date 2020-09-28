@@ -1,27 +1,5 @@
-<style>
-  .order-details {
-    font-size: 24px;
-    width: 100%;
-  }
-
-  .row {
-    display: flex;
-    background-color: #394245;
-    border-radius: 10px;
-    margin-bottom: 24px;
-    color: #e2e2e2;
-    padding: 1.2rem 2.4rem 1.2rem 2.4rem;
-    align-items: center;
-  }
-
-  .label {
-    width: 40%;
-    min-width: 160px;
-    font-size: 20px;
-  }
-
-</style>
 <script>
+  import Particles from "./components/Particles.svelte";
   import { onMount } from "svelte";
   import numeral from "numeral";
   import axios from "axios";
@@ -62,7 +40,7 @@
     price: 0,
     amount: 0,
   };
-  let address = '';
+  let address = "";
   let loading = false;
   axios
     .get("http://localhost:8080/price", {
@@ -124,6 +102,40 @@
   });
 </script>
 
+<style>
+  .order-details {
+    font-size: 24px;
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    background-color: #394245;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    color: #e2e2e2;
+    padding: 1.2rem 2.4rem 1.2rem 2.4rem;
+    align-items: center;
+  }
+
+  .label {
+    width: 40%;
+    min-width: 160px;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .cell {
+      font-size: 18px;
+    }
+
+    .label {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<Particles />
 <div id="__next">
   <div class="styled__PageWrapper-nz051x-0 bXuSMf">
     <div class="page-index styled__RouteWrapper-nz051x-1 drsJoZ">
@@ -131,8 +143,11 @@
         id="ui-content-wrapper"
         class="styled__ContentWrapper-nz051x-3 kTeoBv">
         <div class="styled__Wrapper-jh5f4m-0 hgLKRt">
-          <h1 style="margin-top: 100px;">Купить BTC за QIWI</h1>
-          <h3>Самый выгодный курс. </h3>
+          <h1 style="color: #e2e2e2;">
+            <span>Купить</span>&nbsp;<span style="color: #f2a900">BTC</span> за <span
+              style="color: #FF8C00">QIWI</span>
+          </h1>
+          <h3 style="color: #e2e2e2;">Самый выгодный курс.</h3>
           <section class="styled__Section-sc-41jxkj-0 bvFigX">
             <div class="styled__Wrapper-sc-41jxkj-1 kiWDxD">
               <div class="styled__Calculator-sc-41jxkj-4 gmVwgp">
@@ -157,7 +172,8 @@
                           styled__CurrencySwitch-g3y0ua-4 hSxRPn"
                         type="button"
                         id="currency_button_from">
-                        <div class="full-name-label">QIWI</div>RUB
+                        <div class="full-name-label">QIWI</div>
+                        <span style="color:rgb(255, 140, 0)">RUB</span>
                       </button>
                     </div>
                     <div class="styled__DropListWrapper-tlgv5r-0 bZzVdI">
@@ -322,7 +338,8 @@
                           styled__CurrencySwitch-g3y0ua-4 hSxRPn"
                         type="button"
                         id="currency_button_to">
-                        <div class="full-name-label">Bitcoin</div>BTC
+                        <div class="full-name-label">Bitcoin</div>
+                        <span style="color: rgb(242, 169, 0)">BTC</span>
                       </button>
                     </div>
                     <div class="styled__DropListWrapper-tlgv5r-0 bZzVdI">
@@ -408,14 +425,14 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                   <div
                     style="margin-top: 24px"
                     class="currency-block styled__WrapperCurrency-g3y0ua-0 rGnYa">
                     <span
                       class="currency-block__label
-                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Номер bitcoin кошелька</span>
+                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Номер bitcoin
+                      кошелька</span>
                     <input
                       style="width: 100%; font-size: 18px;"
                       id="wallet"
@@ -426,10 +443,22 @@
                       bind:value={address} />
                   </div>
                   <button
-                    class="size-large color-green full-width exchange-button
+                    class="size-large color-btc full-width exchange-button
                       sc-EHOje hKUrIz"
                     type="button"
-                    href="/processing"><span>Купить</span></button>
+                    href="/processing">
+                    <span style="margin-right: 10px">
+                      <svg
+                        width="14"
+                        class="arrow-svg"
+                        viewBox="0 0 14 11"
+                        xmlns="http://www.w3.org/2000/svg"><path
+                          d="M13.36 7.219l-3.665 3.664V7.89H.735V.562h1.35V6.54h7.61V3.555z"
+                          fill="currentColor"
+                          fill-rule="nonzero" /></svg>
+                    </span>
+                    <span>Купить</span>
+                  </button>
                 </div>
               </div>
               <div class="styled__Hero-sc-41jxkj-2 esrRra">

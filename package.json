@@ -21,6 +21,7 @@
     "axios": "^0.20.0",
     "currency": "^4.1.0",
     "numeral": "^2.0.6",
+    "particles.js": "^2.0.0",
     "sirv-cli": "^1.0.0",
     "svelte-input-mask": "^1.0.1",
     "svelte-swipe": "^1.7.0"
