@@ -2,7 +2,9 @@ const express = require('express');
 const Binance = require('node-binance-api')
 const cors = require('cors');
 const { BehaviorSubject } = require('rxjs');
-const { currencycom } = require('ccxt');
+const uniqueId = require('lodash.uniqueid');
+const OrdersRepository = require('./OrdersRepository');
+const { id } = require('date-fns/locale');
 
 const app = express();
 const binance = new Binance().options({
@@ -56,6 +58,20 @@ app.get('/price', async (req, res) => {
         fee,
         currentPrice: currentPrice,
     });
+});
+
+const orders = new OrdersRepository();
+app.post('/processing', (req, res) => {
+    const order = {
+        publicId: uniqueId(),
+        btc: req.body.btc,
+        rub: req.body.rub,
+        rate: req.body.rate,
+        address: req.body.address,
+    };
+    const created = { ...orders.create(order) };
+    delete created.id;
+    res.json(created);
 });
 
 app.listen(8080);

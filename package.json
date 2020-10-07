@@ -19,11 +19,15 @@
   "dependencies": {
     "@fooloomanzoo/number-input": "^3.0.10",
     "axios": "^0.20.0",
+    "bitcoin-address-soft-regex-validation": "^1.1.3",
+    "bitcoin-address-validation": "^1.0.2",
+    "btc-address-validator": "^1.9.4",
     "currency": "^4.1.0",
     "numeral": "^2.0.6",
     "particles.js": "^2.0.0",
     "sirv-cli": "^1.0.0",
     "svelte-input-mask": "^1.0.1",
-    "svelte-swipe": "^1.7.0"
+    "svelte-swipe": "^1.7.0",
+    "wallet-address-validator": "^0.2.4"
   }
 }

@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import numeral from "numeral";
   import axios from "axios";
+  import { isValidBitcoinAddress } from "bitcoin-address-soft-regex-validation";
 
   // load a locale
   numeral.register("locale", "ru", {
@@ -42,7 +43,7 @@
       params: { currency: "btc", value: 1 },
     })
     .then((resp) => {
-      btcPrice = numeral(resp.data).format();
+      btcPrice = numeral(resp.data.currentPrice).format();
       localStorage.setItem("lastPrice", btcPrice);
     });
 
@@ -104,6 +105,19 @@
     });
     initNumericInput(elAmount, "0,0[.]00000000");
   });
+
+  const handleProcessing = async () => {
+    if (!isValidBitcoinAddress(address)) {
+      alert('Невалидный адрес биткоин кошелька. Проверьте, пожалуйста, введенные данные.');
+    }
+
+    const data = {
+      btc: numeral(values.amount).value(),
+      rub: numeral(values.price).value(),
+      address,
+    };
+    axios.post("http://localhost:8080/processing", data);
+  };
 </script>
 
 <style>
@@ -450,6 +464,7 @@
                       bind:value={address} />
                   </div>
                   <button
+                    on:click={handleProcessing}
                     class="size-large color-btc full-width exchange-button
                       sc-EHOje hKUrIz"
                     type="button"
@@ -476,7 +491,7 @@
                   </div>
                   <div class="row">
                     <div class="cell label">Курс обмена</div>
-                    <div class="cell">{numeral(currentPrice).format()}</div>
+                    <div class="cell">{btcPrice}</div>
                   </div>
                   <div class="row">
                     <div class="cell label">Комиссия</div>
