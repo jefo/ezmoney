@@ -2,6 +2,7 @@ const express = require('express');
 const Binance = require('node-binance-api')
 const cors = require('cors');
 const { BehaviorSubject } = require('rxjs');
+const { currencycom } = require('ccxt');
 
 const app = express();
 const binance = new Binance().options({
@@ -20,7 +21,7 @@ let currentBtcPrice$ = new BehaviorSubject(0);
 const updateBtcPrice = () => {
     binance.prices('BTCRUB', (err, ticker) => {
         if (!err) {
-            currentBtcPrice$.next(ticker.BTCRUB);
+            currentBtcPrice$.next(Number(ticker.BTCRUB));
         }
     });
 };
@@ -29,14 +30,15 @@ updateBtcPrice();
 
 setInterval(() => {
     updateBtcPrice();
-}, 10000 * 1);
+}, 60000 * 10);
 
 app.get('/price', async (req, res) => {
     let calcPrice;
     if (!req.query.currency) {
         res.json(0);
     }
-    switch (req.query.currency.toLowerCase()) {
+    const currency = req.query.currency.toLowerCase();
+    switch (currency) {
         case 'rub':
             calcPrice = rubToBtc;
             break;
@@ -47,8 +49,13 @@ app.get('/price', async (req, res) => {
             calcPrice = val => val;
     }
     const currentPrice = currentBtcPrice$.getValue();
-    console.log('price', currentPrice);
-    res.json(calcPrice(req.query.value, currentPrice));
+    const price = calcPrice(req.query[currency], currentPrice);
+    const fee = req.query.rub * 2.5 / 100;
+    res.json({
+        price,
+        fee,
+        currentPrice: currentPrice,
+    });
 });
 
 app.listen(8080);

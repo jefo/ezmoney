@@ -3,15 +3,6 @@
   import { onMount } from "svelte";
   import numeral from "numeral";
   import axios from "axios";
-  import { Swipe, SwipeItem } from "svelte-swipe";
-
-  const swipeConfig = {
-    autoplay: false,
-    delay: 0,
-    showIndicators: false,
-    transitionDuration: 1000,
-    defaultIndex: 0,
-  };
 
   // load a locale
   numeral.register("locale", "ru", {
@@ -42,6 +33,10 @@
   };
   let address = "";
   let loading = false;
+  let currentPrice = 852902;
+  let priceWithFee = 0;
+  let fee = 0;
+
   axios
     .get("http://localhost:8080/price", {
       params: { currency: "btc", value: 1 },
@@ -51,10 +46,10 @@
       localStorage.setItem("lastPrice", btcPrice);
     });
 
-  const getCurrencyPrice = ({ currency, value }) =>
+  const getCurrencyPrice = (params) =>
     axios
       .get("http://localhost:8080/price", {
-        params: { currency, value },
+        params,
       })
       .then((resp) => resp.data);
 
@@ -77,10 +72,19 @@
           return;
         }
         loading = true;
-        getCurrencyPrice({ currency, value })
+        getCurrencyPrice({
+          currency,
+          rub: numeral(values.price).value(),
+          btc: numeral(values.amount).value(),
+        })
           .then((data) => {
             let inputToUpdate = e.target.id === "price" ? "amount" : "price";
-            values[inputToUpdate] = numeral(data).format("0,0[.]00000000");
+            currentPrice = data.currentPrice;
+            priceWithFee = data.priceWithFee;
+            fee = data.fee;
+            values[inputToUpdate] = numeral(data.price).format(
+              "0,0[.]00000000"
+            );
             loading = false;
           })
           .catch((e) => console.error(e));
@@ -106,6 +110,7 @@
   .order-details {
     font-size: 24px;
     width: 100%;
+    padding-top: 32px;
   }
 
   .row {
@@ -144,8 +149,9 @@
         class="styled__ContentWrapper-nz051x-3 kTeoBv">
         <div class="styled__Wrapper-jh5f4m-0 hgLKRt">
           <h1 style="color: #e2e2e2;">
-            <span>Купить</span>&nbsp;<span style="color: #f2a900">BTC</span> за <span
-              style="color: #FF8C00">QIWI</span>
+            <span>Купить</span>&nbsp;<span style="color: #f2a900">BTC</span>
+            за
+            <span style="color: #FF8C00">QIWI</span>
           </h1>
           <h3 style="color: #e2e2e2;">Самый выгодный курс.</h3>
           <section class="styled__Section-sc-41jxkj-0 bvFigX">
@@ -157,7 +163,8 @@
                     class="currency-block styled__WrapperCurrency-g3y0ua-0 rGnYa">
                     <span
                       class="currency-block__label
-                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Вы тратите</span>
+                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Вы
+                      тратите</span>
                     <input
                       id="price"
                       class="c-price-value currency-block__value
@@ -431,8 +438,8 @@
                     class="currency-block styled__WrapperCurrency-g3y0ua-0 rGnYa">
                     <span
                       class="currency-block__label
-                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Номер bitcoin
-                      кошелька</span>
+                        styled__CurrencyLabel-g3y0ua-1 biCxOe">Номер
+                      bitcoin кошелька</span>
                     <input
                       style="width: 100%; font-size: 18px;"
                       id="wallet"
@@ -465,19 +472,15 @@
                 <div class="order-details">
                   <div class="row">
                     <div class="cell label">Вы покупаете</div>
-                    <div class="cell">0.0125&nbsp;BTC</div>
+                    <div class="cell">{values.amount}&nbsp;BTC</div>
                   </div>
                   <div class="row">
                     <div class="cell label">Курс обмена</div>
-                    <div class="cell">852,902</div>
+                    <div class="cell">{numeral(currentPrice).format()}</div>
                   </div>
                   <div class="row">
                     <div class="cell label">Комиссия</div>
-                    <div class="cell">100р</div>
-                  </div>
-                  <div class="row">
-                    <div class="cell label">К оплате</div>
-                    <div class="cell">3100р</div>
+                    <div class="cell">{fee}р</div>
                   </div>
                   <div class="row">
                     <div class="cell label">Статус</div>
